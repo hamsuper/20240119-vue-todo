@@ -1,9 +1,9 @@
 <template>
   <div class="inputBox shadow">
-    <input type="text" v-model="newTodoItem" placeholder="Type what you have to do" v-on:keyup.enter="addTodo" />
-    <sapn class="addContainer" v-on:click="addTodo">
+    <input type="text" v-model="newTodoItem" placeholder="Type what you have to do" v-on:keypress.enter="addTodo">
+    <span class="addContainer" v-on:click="addTodo">
       <i class="addBtn fas fa-plus" area-hidden="true"></i>
-    </sapn>
+    </span>
   </div>
 </template>
 
@@ -18,7 +18,8 @@ export default {
     addTodo() { 
       if (this.newTodoItem !== '') {
         let value = this.newTodoItem && this.newTodoItem.trim();
-        localStorage.setItem(value, value);
+        // localStorage.setItem(value, value);
+        this.$emit('addTodo', value);
         this.clearInput();
       }
     },
